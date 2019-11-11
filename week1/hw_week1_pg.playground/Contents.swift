@@ -48,9 +48,9 @@ let bitsInBite: Int = 8
 let averageScore: Float = 86.6
 
 //5. Compound assignment ​ operator is very useful when programming. Please create salary as 22000, and use ​ unary plus operator ​ adding 28000 to salary, and it will be 50000 after this process.
-let salary: Int = 22000
-let addSalary: Int = salary + 28000
-print(addSalary)
+var salary: Int = 22000
+salary = salary + 28000
+print(salary)
 
 //6.You should notice that ​ ‘=’ ​ has difference meaning in programming. In real world, ​ ‘=’means equal while In programming, ​ ‘=’ ​ means ​assign​. You simply put the right handside data into left hand side variable or constant.Now please write down the ​Equality​ operator in swift.
 x == y
@@ -136,6 +136,14 @@ for index in lottoNumbers.count - 3...lottoNumbers.count - 1{
 }
 
 //2.When use for-in loop, we make the computer do the same thing multiple times. Theindex is increasing by 1. What if we want to decreasing by -1 ? What if we want toincreasing by 2 ? Please use swift syntax to get the result as images list below :
+for i in stride(from: 5, to: 11, by: 1){
+    print(i)
+}
+print("-----")
+for i in stride(from: 10, to: 5, by: -2){
+    print(i)
+}
+
 var count: Int = 4
 for _ in 0...5 where count <= 10{
     count += 1
