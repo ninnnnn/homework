@@ -8,5 +8,5 @@ let number = { ( input: Int) -> Bool in
     }
 }
 
-number(5)
+number(7)
 number(1000)
