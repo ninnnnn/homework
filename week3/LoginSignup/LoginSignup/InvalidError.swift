@@ -7,3 +7,28 @@
 //
 
 import Foundation
+
+enum InvalidError: Error {
+    case emptyAccount, emptyCheckPassword, emptyPassword, signupFail, loginFail
+}
+
+public func checkUserInfo(acc: String, psw: String, chkpsd: String, checkEnable: Bool) throws {
+    guard !acc.isEmpty else {
+        throw InvalidError.emptyAccount
+    }
+    guard !psw.isEmpty else {
+        throw InvalidError.emptyPassword
+    }
+    if !checkEnable {
+        guard acc.isEqual("appworks_school@gmail.com") && psw.isEqual("1234") else {
+            throw InvalidError.loginFail
+        }
+    } else {
+        guard !chkpsd.isEmpty else {
+        throw InvalidError.emptyCheckPassword
+        }
+        guard !acc.isEqual("appworks_school@gmail.com") && psw.isEqual(chkpsd) else {
+            throw InvalidError.signupFail
+        }
+    }
+}
