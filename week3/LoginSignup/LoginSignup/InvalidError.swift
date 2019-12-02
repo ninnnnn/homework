@@ -8,8 +8,12 @@
 
 import Foundation
 
-enum InvalidError: Error {
-    case emptyAccount, emptyCheckPassword, emptyPassword, signupFail, loginFail
+enum InvalidError: String, Error {
+    case emptyAccount = "Account should not be empty."
+    case emptyCheckPassword = "Check Password should not be empty."
+    case emptyPassword = "Password should not be empty."
+    case signupFail = "Signup fail"
+    case loginFail = "Login fail"
 }
 
 public func checkUserInfo(acc: String, psw: String, chkpsd: String, checkEnable: Bool) throws {

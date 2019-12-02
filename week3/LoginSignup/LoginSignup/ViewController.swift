@@ -20,18 +20,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordEditText: UITextField!
     @IBOutlet weak var checkPsdEditText: UITextField!
     
-    @IBAction func accountTextField(_ sender: UITextField) {
-        account = "\(sender.text ?? "")"
-    }
-    
-    @IBAction func passwordTextField(_ sender: UITextField) {
-        password = "\(sender.text ?? "")"
-    }
-    
-    @IBAction func checkPsdTextField(_ sender: UITextField) {
-        checkPsd = "\(sender.text ?? "")"
-    }
-    
     @IBAction func segmantAction(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             checkLabel.textColor = UIColor.gray
@@ -52,18 +40,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         do {
             try checkUserInfo(acc: account, psw: password, chkpsd: checkPsd, checkEnable: checkEnable)
-        } catch InvalidError.emptyAccount {
-            msg = "Account should not be empty."
-        } catch InvalidError.emptyPassword {
-            msg = "Password should not be empty."
-        } catch InvalidError.emptyCheckPassword {
-            msg = "Check Password should not be empty."
-        } catch InvalidError.loginFail {
-            msg = "Login fail"
-        } catch InvalidError.signupFail {
-            msg = "Signup fail"
-        } catch {
-            msg = "Unknown error"
+        } catch let error {
+            guard let invalidError = error as? InvalidError else {
+                return
+            }
+            msg = invalidError.rawValue
         }
         
         let title = "Success" == msg ? "" : "Error"
@@ -89,6 +70,5 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         return true
     }
-    
 }
 
